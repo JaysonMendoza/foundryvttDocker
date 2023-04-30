@@ -1,0 +1,17 @@
+<form autocomplete="off">
+    <p class="notes">{{ localize "FOLDER.ExportHint" }}</p>
+    <div class="form-group">
+        <label>{{ localize "FOLDER.ExportDestination" }}</label>
+        <select name="pack">
+            {{selectOptions packs selected=pack}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "FOLDER.ExportMerge" }}</label>
+        <input type="checkbox" name="merge" {{ checked merge }}/>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "FOLDER.ExportKeepId" }}</label>
+        <input type="checkbox" name="keepId" {{ checked keepId }}/>
+    </div>
+</form>

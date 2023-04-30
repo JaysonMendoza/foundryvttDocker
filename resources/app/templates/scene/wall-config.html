@@ -1,0 +1,77 @@
+<form autocomplete="off">
+    <p class="notes">{{localize "WALLS.Instructions"}}</p>
+
+    <div class="form-group">
+        <label>{{localize "WALLS.Coordinates"}}</label>
+        <input type="text" value="[{{object.c}}]" disabled/>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "WALLS.Movement"}}</label>
+        <select name="move" data-dtype="Number">
+            {{#select object.move}}
+            {{#each moveTypes as |name type|}}
+            <option value="{{type}}">{{name}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "WALLS.Light"}}</label>
+        <select name="light" data-dtype="Number">
+            {{selectOptions senseTypes selected=object.light }}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "WALLS.Sight"}}</label>
+        <select name="sight" data-dtype="Number">
+            {{selectOptions senseTypes selected=object.sight }}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "WALLS.Sound"}}</label>
+        <select name="sound" data-dtype="Number">
+            {{selectOptions senseTypes selected=object.sound }}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "WALLS.Direction"}}</label>
+        <select name="dir" data-dtype="Number">
+            {{#select object.dir}}
+            {{#each dirTypes as |name type|}}
+            <option value="{{type}}">{{name}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "WALLS.Door"}}</label>
+        <select name="door" data-dtype="Number">
+            {{#select object.door}}
+            {{#each doorTypes as |name type|}}
+            <option value="{{type}}">{{name}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "WALLS.DoorState"}}</label>
+        <select name="ds" data-dtype="Number">
+            {{#select object.ds}}
+            {{#each doorStates as |name state|}}
+            <option value="{{state}}">{{name}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </div>
+
+    <button type="submit">
+        <i class="far fa-save"></i> {{localize "WALLS.Submit"}}
+    </button>
+</form>

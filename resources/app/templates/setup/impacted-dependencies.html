@@ -1,0 +1,17 @@
+{{#if enabling}}
+<p>{{ localize "MODMANAGE.DepEnable" number=dependencies.size }}</p>
+{{else}}
+<p>{{ localize "MODMANAGE.DepDisable" number=dependencies.size }}</p>
+{{/if}}
+
+<ul>
+    {{#each dependencies}}
+    <li>{{this.id}}</li>
+    {{/each}}
+</ul>
+
+{{#if enabling}}
+<p>{{ localize "MODMANAGE.DepEnableCheck" }}</p>
+{{else}}
+<p>{{ localize "MODMANAGE.DepDisableCheck" }}</p>
+{{/if}}

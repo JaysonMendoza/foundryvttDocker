@@ -1,0 +1,31 @@
+<form class="flexrow" autocomplete="off" data-pack="{{adventure.pack}}" data-adventure-id="{{adventure.id}}">
+    <header class="adventure-header">
+        <h1>{{adventure.name}}</h1>
+    </header>
+
+    <figure class="adventure-banner">
+        <img src="{{adventure.img}}" title="{{adventure.name}}" height="300"/>
+        <figcaption>{{{adventure.caption}}}</figcaption>
+    </figure>
+
+    <section class="adventure-overview">
+        <h2>{{localize "ADVENTURE.ImportHeaderOverview"}}</h2>
+        {{{adventure.description}}}
+    </section>
+
+    <section class="adventure-contents">
+        <h2>{{localize "ADVENTURE.ImportHeaderContents"}}</h2>
+        <ul>
+            {{#each contents}}
+            <li><i class="{{this.icon}} fa-fw"></i> {{this.count}} {{this.label}}</li>
+            {{/each}}
+        </ul>
+    </section>
+
+    <footer class="adventure-footer">
+        <button type="submit">
+            <i class="fas fa-download"></i>
+            {{localize "ADVENTURE.ImportSubmit"}}
+        </button>
+    </footer>
+</form>

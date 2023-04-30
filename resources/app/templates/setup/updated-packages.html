@@ -1,0 +1,24 @@
+<table class="updated-packages-table">
+    <thead>
+        <tr>
+            <th class="package">{{ localize "SETUP.Package" }}</th>
+            <th class="action">{{ localize "Result" }}</th>
+            <th class="description">{{ localize "Description" }}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {{#each changed}}
+        <tr>
+            <td class="package">
+                {{#if package.url}}
+                    <a href="{{package.url}}" target="_blank">{{package.title}}</a>
+                {{else}}
+                    {{package.title}}
+                {{/if}}
+            </td>
+            <td class="action {{this.action}}"><i class="fas {{this.actionClass}}"></i> {{this.action}}</td>
+            <td class="description">{{this.description}}</td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
