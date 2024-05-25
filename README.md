@@ -1,5 +1,13 @@
 # foundryvttDocker Image
-A docker simple docker container builder for foundryvtt servers
+A docker simple docker container builder for foundryvtt servers.
+
+To use this image you must have a valid licence from [Foundry VTT Website](https://foundryvtt.com/community/drazev/licenses). You will be prompted for this the first time you set up a server and log into it.
+
+This image will help you set up your own dedicated server easily within a docker container. If you just want to run a game instance for your sessions it may not be necessary to have a dedicated server unless your machine lacks the necessary power. 
+In these instances, you should download and install Foundry's pre-packaged Windows installation to make your life easier. 
+
+Also, note that creating a dedicated server will involve more than creating a docker container. You will need to publish
+
 
 ## Using a Pre-built Image
 The builds for supported foundry versions can be found on [Docker Hub](https://hub.docker.com/r/drazev/foundryvttdocker/tags). Since May 2024 the major version of the image is aligned to the foundry versions.
@@ -15,6 +23,9 @@ If you target one of those valid images with run docker will automatically downl
 4. Run the image, using this format as an example for version 12: `sudo docker run --name YOUR_SERVER_NAME -d -p 30000:30000 -v /path/to/local/foundryDataFolder:/app/data --restart unless-stopped drazev/foundryvttdocker:12.0.0`
 5. Navigate to your server on port `30000`
 6. If this is a new foundry server enter your license key.
+7. Get your computer's IP address using `ifconfig` for linux or `ipconfig` using Windows and note it for step 9.
+8. Open port 30000 on the server computer's firewall for `TCP` so that external computers can communicate with the docker container.
+9. On your router you will need to forward port `30000` to your computer's IP address. You should also make sure your router has a static or unchanging IP before you do this or it might randomly change on your and make your server inaccessible.
 
 > [!WARNING]
 > Do not share or copy your `foundryData` folder for a live server. The foundry app expects it to have exclusive control over the folder for a single instance of the app.
