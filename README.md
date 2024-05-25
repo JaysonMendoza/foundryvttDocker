@@ -6,7 +6,7 @@ To use this image you must have a valid licence from [Foundry VTT Website](https
 This image will help you set up your own dedicated server easily within a docker container. If you just want to run a game instance for your sessions it may not be necessary to have a dedicated server unless your machine lacks the necessary power. 
 In these instances, you should download and install Foundry's pre-packaged Windows installation to make your life easier. 
 
-Also, note that creating a dedicated server will involve more than creating a docker container. You will need to publish
+Also, note that creating a dedicated server will involve more than creating a docker container. Steps 7-9 give you the basic steps required to make your server accessible through the internet.
 
 
 ## Using a Pre-built Image
