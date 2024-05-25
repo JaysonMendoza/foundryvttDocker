@@ -130,5 +130,5 @@ dist
 .pnp.*
 
 # docker build files
-data/
-versions/
+data/**
+versions/**
