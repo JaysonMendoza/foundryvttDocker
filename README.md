@@ -1,7 +1,28 @@
-# foundryvttDocker
+# foundryvttDocker Image
 A docker simple docker container builder for foundryvtt servers
 
+## Using a Pre-built Image
+The builds for supported foundry versions can be found on [Docker Hub](https://hub.docker.com/r/drazev/foundryvttdocker/tags). Since May 2024 the major version of the image is aligned to the foundry versions.
+If you target one of those valid images with run docker will automatically download the image before constructing your container.
 
+> [!NOTE]
+> I will only update the image for each foundry version since it requires a new image. For existing images, you will need to run the normal update from Foundry.
+### Steps to Create or Update a Docker Server using an Image
+1. If you have an older version of the server running, you need to stop and then delete it from your docker instance. This requires that you use `docker ps` to find the **containerID** and then run `docker stop containerID` followed by `docker rm containerID`.
+> [!CAUTION]
+> If you forgot to map your volume when you created the server with docker run, it will delete all your data and you will not be able to get it back. If you forgot to do this you should use `docker inspect containerId` to find where the the volume it created is located on your disk and then copy it to another location which will be your new foundryData folder. You should then use the `-v` tag to target that folder and map it to the internal image `/app/data` folder as shown in the example command
+3. Create a new foundryData folder for your server instance on your local disk, or if you already have one find and note it's location. 
+4. Run the image, using this format as an example for version 12: `sudo docker run --name YOUR_SERVER_NAME -d -p 30000:30000 -v /path/to/local/foundryDataFolder:/app/data --restart unless-stopped drazev/foundryvttdocker:12.0.0`
+5. Navigate to your server on port `30000`
+6. If this is a new foundry server enter your license key.
+
+> [!WARNING]
+> Do not share or copy your `foundryData` folder for a live server. The foundry app expects it to have exclusive control over the folder for a single instance of the app.
+> If you have more than one app running on it or attempt to copy it while it is running you could end up with corrupted or lost data.
+>
+> If you wish to backup the foundryData folder, first stop the container instance and then copy it. This makes sure you copy a valid state. Never have two or more app instances ever used a folder.
+
+## Using this repo to make your own image
 To create Image
 1. Clone repository and enter the repository directory
 2. Download the new version's Linux/Node zip file from the [Foundry VTT Website](https://foundryvtt.com/community/drazev/licenses) into the versions folder.
@@ -11,6 +32,7 @@ To create Image
 6. Run the image, using this format as an example: `sudo docker run --name YOUR_SERVER_NAME -d -p 30000:30000 -v /path/to/local/foundryDataFolder:/app/data --restart unless-stopped drazev/foundryvttdocker:12.0.0`
 7. Navigate to your server on port `30000` and enter your license key.
 
+## Understanding and Decomposing the docker Run command examples
 - If multiple servers the "--name" must be unique
 - the `-p host_port:container_port` maps the host port to the container port which is 30000 in this image
 - The `-v` command will take a host directory for the foundry data and map it to a folder in the image where the app expects your data to reside.
@@ -23,9 +45,3 @@ To create Image
 Keep in mind that if you are using multiple servers a virtual http server will be required like apache2. This will be used to receive http requests and map them to the correct applications port.
 
 
-## Finding a Built Image
-The builds for supported foundry versions can be found on [Docker Hub](https://hub.docker.com/r/drazev/foundryvttdocker/tags). Since May 2024 the major version of the image is aligned to the foundry versions.
-If you target one of those valid images with run docker will automatically download the image before constructing your container.
-
-> [!NOTE]
-> I will only update the image for each foundry version since it requires a new image. For existing images, you will need to run the normal update from Foundry.
